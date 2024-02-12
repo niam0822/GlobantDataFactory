@@ -480,7 +480,10 @@
 								"referenceName": "ds_st_globant_BK_Avro",
 								"type": "DatasetReference",
 								"parameters": {
-									"ARCHIVO": "hired_employees_bk.avro"
+									"ARCHIVO": {
+										"value": "@concat(pipeline().parameters.ArchivoAVRO,'.avro')",
+										"type": "Expression"
+									}
 								}
 							}
 						],
@@ -490,7 +493,10 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"Esquema": "globant",
-									"Tabla": "test1"
+									"Tabla": {
+										"value": "@pipeline().parameters.TablaBK",
+										"type": "Expression"
+									}
 								}
 							}
 						]
@@ -498,6 +504,14 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"ArchivoAVRO": {
+						"type": "string"
+					},
+					"TablaBK": {
+						"type": "string"
+					}
 				},
 				"folder": {
 					"name": "Globant"
