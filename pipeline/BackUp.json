@@ -1,0 +1,81 @@
+{
+	"name": "BackUp",
+	"properties": {
+		"activities": [
+			{
+				"name": "TableBK",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AvroSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "AvroWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_bd_globant",
+						"type": "DatasetReference",
+						"parameters": {
+							"Esquema": "globant",
+							"Tabla": {
+								"value": "@pipeline().parameters.TABLA",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_st_globant_BK_Avro",
+						"type": "DatasetReference",
+						"parameters": {
+							"ARCHIVO": {
+								"value": "@concat(pipeline().parameters.TABLA,'.avro')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"TABLA": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Globant"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-02-07T03:01:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

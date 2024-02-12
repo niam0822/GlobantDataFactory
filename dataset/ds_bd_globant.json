@@ -1,0 +1,31 @@
+{
+	"name": "ds_bd_globant",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_db_globant",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Esquema": {
+				"type": "string"
+			},
+			"Tabla": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().Esquema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().Tabla",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

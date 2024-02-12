@@ -1,0 +1,41 @@
+{
+	"name": "ds_st_globant",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_st_globantstorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ARCHIVO": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(dataset().ARCHIVO,'.csv')",
+					"type": "Expression"
+				},
+				"container": "fuente"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "1",
+				"type": "String"
+			},
+			{
+				"name": "Product Management",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

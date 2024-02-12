@@ -1,0 +1,9 @@
+{
+	"name": "df-globant",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e6cbee97-2ac0-4fee-861b-7b7875b2af86",
+		"tenantId": "040c31e1-e775-4202-b5b0-8042c5d6a8aa"
+	}
+}
