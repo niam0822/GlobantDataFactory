@@ -299,12 +299,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"ARCHIVO": {
-				"type": "string",
-				"defaultValue": "hired_employees"
-			}
-		},
 		"folder": {
 			"name": "Globant"
 		},
